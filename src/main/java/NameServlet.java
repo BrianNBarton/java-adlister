@@ -1,3 +1,4 @@
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,31 +10,21 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 
-@WebServlet(name = "HelloWorldServlet", urlPatterns = "/hello-world")
-public class HelloWorldServlet extends HttpServlet {
 
-    private int count;
+@WebServlet(name = "DaNameServlet", urlPatterns = "/nombre")
+public class NameServlet extends HttpServlet {
 
+    String firstName = "Brian";
+    String lastName = "Barton";
 
+    String fullName = firstName + " " + lastName;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    String firstName = request.getParameter("firstName");
-    boolean resetCount = request.getParameter("reset") != null;
-    if (resetCount)
-    {
-        count = 0;
-    }
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println("<h1>Hello, " + firstName + "!</h1>");
-        out.println("hit counter" + (count++ * count++ * count++));
+        out.println("<h1>Hello, "+ fullName +"!</h1>");
 
-
-        if (firstName == null) {
-            firstName = "World";
-        }
 
     }
 }
